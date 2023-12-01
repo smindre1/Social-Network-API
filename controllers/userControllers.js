@@ -1,4 +1,4 @@
-const { User, Thought } = require("../models");
+const { User} = require("../models");
 
 module.exports = {
   //get all users
@@ -18,6 +18,7 @@ module.exports = {
   // {"username": "chucky48", "email": "hauntedChucky@gmail.com"}
 
   newUser(req, res) {
+    console.log(req.body);
     User.create(req.body)
       .then((user) => res.json(user))
       .catch((err) => {
