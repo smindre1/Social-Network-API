@@ -22,7 +22,9 @@ module.exports = {
   newThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
-        User.findOneAndUpdate({ _id: req.body.userId }, { $addToSet: { thoughts: thought._id } }, { runValidators: true, new: true });
+        // console.log(thought._id.toHexString());
+        // console.log(thought._id.toHexString());
+        return User.findOneAndUpdate({ username: req.body.username }, { $addToSet: { thoughts: thought._id } }, { runValidators: true, new: true });
       })
       .then((data) => res.json(data))
       .catch((err) => {
@@ -59,7 +61,8 @@ module.exports = {
   newReaction(req, res) {
     Reaction.create(req.body)
       .then((reaction) => {
-        Thought.findOneAndUpdate({ _id: req.body.thoughtId }, { $addToSet: { reactions: reaction._id } }, { runValidators: true, new: true });
+        console.log(reaction.reactionId);
+        return Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $push: { reactions: reaction.reactionId } }, { runValidators: true, new: true });
       })
       .then((data) => res.json(data))
       .catch((err) => {
@@ -68,7 +71,7 @@ module.exports = {
       });
   },
 
-  //delete to pull and remove a reaction by the reacction's reactionId value
+  //delete to pull and remove a reaction by the reaction's reactionId value
   deleteReaction(req, res) {
     Reaction.findOneAndDelete({ _id: req.params.reactionId })
       .then((reaction) =>
@@ -77,7 +80,7 @@ module.exports = {
           : // remove the reaction from the Thoughts' reaction array when the reaction is deleted
             Thought.findOneAndUpdate({ _id: req.body.thoughtId }, { $pull: { reactions: req.params.reactionId } }, { runValidators: true, new: true })
       )
-      .then(() => res.json({ message: "Thought deleted and User updated!" }))
+      .then(() => res.json({ message: "Reaction deleted and Thought updated!" }))
       .catch((err) => res.status(500).json(err));
   },
 };

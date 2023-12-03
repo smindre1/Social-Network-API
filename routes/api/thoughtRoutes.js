@@ -5,6 +5,8 @@ router.route('/').get(getThoughts).post(newThought);
 
 router.route('/:thoughtId').get(getSpecificThought).put(updateThought).delete(deleteThought);
 
-router.route('/:thoughtId/reactions').post(newReaction).delete(deleteReaction);
+router.route('/:thoughtId/reactions').post(newReaction);
+
+router.route('/reactions/:reactionId').delete(deleteReaction);
 
 module.exports = router;
