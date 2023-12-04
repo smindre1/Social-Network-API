@@ -33,7 +33,7 @@ The following video show the web application's appearance and functionality:
 
 ## API Route Endpoints:
 
-### `USER Routes (POST|GET|PUT|DELETE)`
+### USER Routes (POST|GET|PUT|DELETE)
 
 - `POST:`
 
@@ -60,7 +60,7 @@ The following video show the web application's appearance and functionality:
   - `Endpoint:` /api/user/:userId/
     - `Purpose:` Deletes a specific User, based on the user ID, from the database along with all their Thought model items.
 
-### `FRIEND Routes (POST|DELETE)`
+### FRIEND Routes (POST|DELETE)
 
 - `POST:`
 
@@ -72,7 +72,7 @@ The following video show the web application's appearance and functionality:
   - `Endpoint:` /api/user/:userId/friends/friendId/
     - `Purpose:` Removes a specific friend Id (A.K.A. a userId) from a specific User's friend list.
 
-### `Thought Routes (POST|GET|PUT|DELETE)`
+### Thought Routes (POST|GET|PUT|DELETE)
 
 - `POST:`
 
@@ -97,7 +97,7 @@ The following video show the web application's appearance and functionality:
   - `Endpoint:` /api/thoughts/:thoughtId/
     - `Purpose:` Deletes a specific Thought, based on the thought ID, from the database.
 
-### `REACTION Routes (POST|DELETE)`
+### REACTION Routes (POST|DELETE)
 
 - `POST:`
 
